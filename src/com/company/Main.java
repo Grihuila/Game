@@ -28,6 +28,7 @@ class Game {
             useSpecialCard(act, player.deck[i], player.deck[i+1]);
             System.out.println(">>");
             input = in.nextLine();
+            //
         }
     }
 
