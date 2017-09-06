@@ -26,9 +26,6 @@ class Game {
             dropCard(i);
             act = dropSpecialCard();
             useSpecialCard(act, player.deck[i], player.deck[i+1]);
-            System.out.println(">>");
-            input = in.nextLine();
-            //dsed
         }
     }
 
