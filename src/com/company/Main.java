@@ -14,7 +14,7 @@ class Computer {
 class Game {
     static Player player = new Player();
     static Computer computer = new Computer();
-    static  String[] acts = {"Sum", "Swk"};
+    static  String[] acts = {"Sum"};
     static  String act;
     static  specialCard Card = new specialCard();
     static Scanner in = new Scanner(System.in);
@@ -64,10 +64,11 @@ class Game {
         return acts[rand];
     }
     private  static  void useSpecialCard(String _act, int val1, int val2) {
-        if ( _act.equals("Sum")) {
-            //TODO Card.sum(val1, val2);
-        }
-
+       switch (_act) {
+           case "sum":
+               //TODO
+               break;
+       }
     }
 }
 class specialCard {
@@ -81,4 +82,3 @@ public class Main {
         game.run();
     }
 }
-//
