@@ -26,6 +26,7 @@ class Game {
             dropCard(i);
             act = dropSpecialCard();
             useSpecialCard(act, player.deck[i], player.deck[i+1]);
+            play(player.deck[i], computer.deck[i]);
         }
     }
 
@@ -62,6 +63,16 @@ class Game {
         Random random = new Random();
         int rand = random.nextInt(acts.length);
         return acts[rand];
+    }
+    private  static void play(int card1, int card2) {
+        if (card1 > card2) {
+            player.point += card1 - card2;
+        } else if(card1 < card2) {
+            computer.point += card2 - card1;
+        } else {
+            player.point+=card1/2;
+            computer.point+=card1/2;
+        }
     }
     private  static  void useSpecialCard(String _act, int val1, int val2) {
        switch (_act) {
