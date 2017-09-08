@@ -14,9 +14,9 @@ class Computer {
 class Game {
     static Player player = new Player();
     static Computer computer = new Computer();
-    static  String[] acts = {"Sum"};
-    static  String act;
-    static  specialCard Card = new specialCard();
+    static String[] acts = {"Sum"};
+    static String act;
+    static specialCard Card = new specialCard();
     static Scanner in = new Scanner(System.in);
     static String input;
     public static void run() {
@@ -69,6 +69,7 @@ class Game {
     private static void play(int card1, int card2) {
         if (card1 > card2) {
             player.point += card1 - card2;
+
         } else if(card1 < card2) {
             computer.point += card2 - card1;
         } else {
