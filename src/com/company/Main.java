@@ -80,7 +80,7 @@ class Game {
     private static void useSpecialCard(String _act, int val1, int val2) {
        switch (_act) {
            case "sum":
-               //TODO
+               Card.sum();
                break;
        }
     }
@@ -93,6 +93,7 @@ class specialCard {
      public static void sum() {
          //TODO
      }
+
 }
 public class Main {
     public static void main(String[] args) {
