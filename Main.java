@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
-
+//sosihuy
 class Player {
     int point = 0;
     int[] deck = new int[50];
