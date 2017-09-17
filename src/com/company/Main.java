@@ -131,8 +131,7 @@ class Game {
         start();
         for (int i = 0; i < 50-1; i+=2) {
             dropCard(i);
-            act = dropSpecialCard();
-            useSpecialCard(act, player.deck[i], player.deck[i+1]);
+            play(getCards(i, useordrop(i)));
             printStats();
         }
     }
