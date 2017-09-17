@@ -62,11 +62,13 @@ class Game {
         int rand = random.nextInt(acts.length);
         return acts[rand];
     }
-    private int[] getPcCard(int index) {
-        int[] card = new int[2];
-        card[0] = computer.deck[index];
-        card[1] = computer.deck[index+1];
-        return card;
+    private int[][] getCards(int index, int[] playerCards) {
+        int[][] cards = new int[2][2];
+        cards[0][0] = playerCards[0];
+        cards[0][1] = playerCards[1];
+        cards[1][0] = computer.deck[index];
+        cards[1][1] = computer.deck[index+1];
+        return cards;
     }
     private void play(int[][] cards) {
         int determinant;
