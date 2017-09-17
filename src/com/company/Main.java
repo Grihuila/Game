@@ -14,9 +14,9 @@ class Computer {
 class Game {
     static Player player = new Player();
     static Computer computer = new Computer();
-    static  String[] acts = {"Sum", "Swk"};
-    static  String act;
-    static  specialCard Card = new specialCard();
+    static String[] acts = {"Sum"};
+    static String act;
+    static specialCard Card = new specialCard();
     static Scanner in = new Scanner(System.in);
     static String input;
     public static void run() {
@@ -26,6 +26,9 @@ class Game {
             dropCard(i);
             act = dropSpecialCard();
             useSpecialCard(act, player.deck[i], player.deck[i+1]);
+            play(player.deck[i], computer.deck[i]);
+            play(player.deck[i+1], computer.deck[i+1]);
+            printStats();
         }
     }
 
@@ -58,16 +61,32 @@ class Game {
             System.out.println("[ " + computer.deck[i]+" ] "+" [ "+computer.deck[i+1]+" ]");
             System.out.println("////////////////////////");
     }
-    private  static String dropSpecialCard() {
+    private static String dropSpecialCard() {
         Random random = new Random();
         int rand = random.nextInt(acts.length);
         return acts[rand];
     }
-    private  static  void useSpecialCard(String _act, int val1, int val2) {
-        if ( _act.equals("Sum")) {
-            //TODO Card.sum(val1, val2);
-        }
+    private static void play(int card1, int card2) {
+        if (card1 > card2) {
+            player.point += card1 - card2;
 
+        } else if(card1 < card2) {
+            computer.point += card2 - card1;
+        } else {
+            player.point+=card1/2;
+            computer.point+=card1/2;
+        }
+    }
+    private static void useSpecialCard(String _act, int val1, int val2) {
+       switch (_act) {
+           case "sum":
+               //TODO
+               break;
+       }
+    }
+    private static void printStats() {
+        System.out.print("Ваш счет: " + player.point);
+        System.out.print(" Счет компьтера" + computer.point + '\n');
     }
 }
 class specialCard {
@@ -81,4 +100,3 @@ public class Main {
         game.run();
     }
 }
-//
