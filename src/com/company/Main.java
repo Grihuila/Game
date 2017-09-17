@@ -57,6 +57,32 @@ class Game {
             System.out.println("[ " + computer.deck[i]+" ] "+" [ "+computer.deck[i+1]+" ]");
             System.out.println("////////////////////////");
     }
+    private int[] useordrop(int index){
+        System.out.println("КАРТЫ ВВОДИ НАХУЙ");
+        Scanner in = new Scanner(System.in);
+        Random rand = new Random();
+        int randCard = rand.nextInt(50) + 1;
+        int[] cards = new int[2];
+        int value = in.nextInt();
+        switch(value) {
+            case 1:
+                cards[0] = player.deck[index];
+                cards[1] = randCard;
+                return cards;
+            case 2:
+                cards[0] = randCard;
+                cards[1] = player.deck[index+1];
+                return cards;
+            case 12:
+                cards[0] = player.deck[index];
+                cards[1] = player.deck[index+1];
+                return cards;
+            default:
+                System.out.println("VVODI 1 ILI 2 DOLBOEB, GDE TI TYT 3 KARTU UVIDEL?!?!??! SORI ZA MAT");
+                useordrop(index);
+        }
+        return null;
+    }
     private String dropSpecialCard() {
         Random random = new Random();
         int rand = random.nextInt(acts.length);
@@ -102,6 +128,7 @@ class Game {
     void run() {
         draw(player.deck);
         draw(computer.deck);
+        start();
         for (int i = 0; i < 50-1; i+=2) {
             dropCard(i);
             act = dropSpecialCard();
