@@ -88,15 +88,30 @@ class Game {
         int rand = random.nextInt(acts.length);
         return acts[rand];
     }
-    private void play(int card1, int card2) {
-        if (card1 > card2) {
-            player.point += card1 - card2;
-
-        } else if(card1 < card2) {
-            computer.point += card2 - card1;
+    private int[][] getCards(int index, int[] playerCards) {
+        int[][] cards = new int[2][2];
+        cards[0][0] = playerCards[0];
+        cards[0][1] = playerCards[1];
+        cards[1][0] = computer.deck[index];
+        cards[1][1] = computer.deck[index+1];
+        return cards;
+    }
+    private void play(int[][] cards) {
+        int determinant;
+        int[] playerCards = new int[2];
+        int[] pcCards = new int[2];
+        int playerValue = 0, pcValue = 0; // Переменая для хранения сумму карт
+        for (int i = 0; i < 2; i++) {
+            playerCards[i] = cards[0][i];
+            pcCards[i] = cards[1][i];
+            playerValue += playerCards[i];
+            pcValue += pcCards[i];
+        }
+        determinant = cards[0][0]*cards[1][1] - cards[1][0]*cards[0][1];
+        if (pcValue > playerValue) {
+            computer.point += determinant;
         } else {
-            player.point+=card1/2;
-            computer.point+=card1/2;
+            player.point += determinant;
         }
     }
     private void useSpecialCard(String _act, int val1, int val2) {
@@ -118,9 +133,6 @@ class Game {
             dropCard(i);
             act = dropSpecialCard();
             useSpecialCard(act, player.deck[i], player.deck[i+1]);
-            useordrop(i);
-            play(player.deck[i], computer.deck[i]);
-            play(player.deck[i+1], computer.deck[i+1]);
             printStats();
         }
     }
